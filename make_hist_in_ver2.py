@@ -5,7 +5,6 @@ import os
 import numpy as np
 import argparse
 import math
-import tqdm
 import subprocess as sp
 from subprocess import check_output
 import pandas as pd
@@ -17,10 +16,7 @@ defelem="DefElem"
 histdef='histdef.dat'
 
 def argument():
-
-    for i in tqdm.tqdm(range(int(1e7))):
-        np.pi*np.pi
-
+    
     parser = argparse.ArgumentParser(
     usage='python make_hist.py structure -his= -sigma= -kh= -pos=\n\nstructure         : enter a composition name (e.g. LiCoO2) or POSCAR.names formatted file (if -pos=T)\n-his=histdef.dat  : histdef.dat formatted strucure file (def. histdef.dat)\n-sigma=T          : sigma value for Gaussian broadning\n-kh=T             : output histgram descriptors considering two elements (Def. F)\n-pos=T            : use POSCAR.names file instead of direct input.(Def. F)\nHistogram format  : 1:Prop (eg. AN, EN)  2: 3  3: prop_min  4: prop_max  5: bin_num  6: gaussian_sigma\n')
 
