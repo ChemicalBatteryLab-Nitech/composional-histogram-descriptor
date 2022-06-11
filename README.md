@@ -1,8 +1,12 @@
-# histogram descriptor derived from chemical formula  (化学組成式に由来するヒストグラム記述子作成プログラム)
+## histogram descriptor derived from chemical formula  
+# (化学組成式に由来するヒストグラム記述子作成プログラム)
 
-<div style="text-align: right;">
 作成：小山翼（名工大・中山研）
-</div>
 
 ※現在は日本語の説明のみ掲載しています。
 
+1. 概要
+化学組成に由来する各種情報（原子番号、電気陰性度、その他）を汎用性のあるヒストグラム形式にすることで、機械学習解析などの記述子に変換します（出力は連続量形式）。
+
+2. ライセンス、引用について
+3
