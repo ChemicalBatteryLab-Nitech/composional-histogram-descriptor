@@ -425,8 +425,10 @@ def compdescript(aparam2,aparam3,reference):
     df_hiki_dict={}
       
     if aparam2 != "":     
-        for ff in filename:     
-            df_csv.at[7,ff]=aparam2
+        for ff in filename:
+            dict_df_csv = df_csv.to_dict()
+            dict_df_csv[ff][5]=aparam2
+            df_csv = pd.DataFrame(dict_df_csv)
      
     hist_symbol = '_his'
     column_inc_hist = [column for column in df_csv.columns if hist_symbol in column]
