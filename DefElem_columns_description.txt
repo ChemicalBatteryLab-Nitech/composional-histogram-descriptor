@@ -1,0 +1,12 @@
+AN   : atomic_number
+EN   : electronegativity
+MP   : melting_point
+PN   : pricipal quantum number
+GP   : group of element
+MN   : mendeleev_number
+AW   : atomic weight
+AR   : atomic radius
+IR   : ionic radius
+CoR  : covalent radius
+CrR  : crystal radius
+spdf : spdf orbit
