@@ -1,34 +1,33 @@
 # Chemical formula derived Histogram descriptor
 
-化学組成式に由来するヒストグラム記述子作成プログラム
+Histogram descriptor creation program derived from chemical composition formula
 
-作成：小山翼（名工大・中山研）
+Created by Tsubasa KOYAMA (Nagoya Institute of Technology, Nakayama Lab)
 
-※現在は日本語の説明のみ掲載しています。
 
-## 概要
-化学組成に由来する各種情報（原子番号、電気陰性度、その他）を汎用性のあるヒストグラム形式にした記述子作成スクリプトです。マテリアルズ・インフォマティクス(Materials Infomatics)における機械学習解析等で用いる記述子として利用できます（出力は連続量形式）。
+## Summary
+This is a descriptor creation script that converts various types of information (atomic number, electronegativity, etc.) derived from chemical composition into a general-purpose histogram format. It can be used as a descriptor for machine learning analysis in Materials Infomatics (output is in continuous quantity format).
 
-## 詳細説明
-ある特定の系に対して記述子を作成する場合は、ヒストグラム式の記述子を採用せずとも、該当する値をそのまま使用することが可能である。しかし、対象としている材料群中にて系が統一されていない場合は、”記述子に欠陥値が発生してしまう”または、”意味の異なった記述子が同じ列に入力されてしまう”などの問題が生じてしまう。機械学習では、基本的に欠損値が発生している場合は学習が困難となる。また、意味の異なった記述子が同じ列に入力されている場合には、化学的に比較する意味のない情報同士を比較することになってしまい、精度の高い予測モデルを作成することが不可能となってしまう。ヒストグラム記述子はこのような問題を回避することができる。図1にLi10Zn3Ge4O6に対する電気陰性度(EN)を例に挙げて、ヒストグラム記述子を作成する模型図を示す。
+## detailed explanation
+When creating descriptors for a particular system, it is possible to use the corresponding values without adopting a histogram descriptor. However, if the systems are not unified in the target material group, problems such as "defective values are generated in the descriptors" or "descriptors with different meanings are entered in the same column" may occur. If the system is not unified in the material group, problems such as "defective descriptors" or "descriptors with different meanings are entered in the same column" will occur. In machine learning, it is basically difficult to learn when missing values are generated. Also, if descriptors with different meanings are entered in the same column, information that is chemically meaningless for comparison is compared, making it impossible to create a highly accurate prediction model. Histogram descriptors can avoid such problems. Figure 1 shows a model for creating a histogram descriptor using electronegativity (EN) for Li10Zn3Ge4O6 as an example.
 
 ![image](https://user-images.githubusercontent.com/106161035/179660726-05805eea-46f3-407f-8a4c-46d5e0ec1325.png)
 
-図1では電気陰性度の値を適当な間隔で区切っていき、各区間内に該当する元素の濃度を算出することで一般的なベクトル形式の記述子を作成している。しかし、機械学習が学習する際には、この区切り区間の隣接関係を学習することができないため、適切なガウス関数を適用し、ヒストグラムの平滑化を行っている。このような組成が含んでいる複数の情報をベクトル化して表すことで、上述した問題を回避でき、どのような組成に対しても対応可能となる。このスクリプトでヒストグラム記述子に変換できる元素特性を表1に示す。そして表1に示した特性をヒストグラム記述子に変換し、それぞれのベクトルを結合させた例を図2に示す。このような流れでヒストグラム記述子が作成される。
+In Figure 1, electronegativity values are separated at appropriate intervals, and a general vector format descriptor is created by calculating the concentration of the element that falls within each interval. However, since machine learning cannot learn the adjacency of these delimited intervals, an appropriate Gaussian function is applied to smooth the histogram. By representing the multiple information that such compositions contain in vector form, the above problem can be avoided and can be handled for any composition. The elemental properties that can be converted into histogram descriptors with this script are shown in Table 1. Figure 2 shows an example of converting the properties shown in Table 1 into histogram descriptors and combining the vectors. The histogram descriptor is created in this manner.
 
 ![image](https://user-images.githubusercontent.com/106161035/179660789-8307643e-cf73-4128-ab5a-0916b501c481.png)
 ![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
 
 
-## 使い方
-1. csvファイルに記述子変換したい化学式(記述例： LiCoO2, LiZr2(PO4)3 ）をリストアップした列を作成する。ただし、列の１行目はラベル行とする。
-2. Jupyter notebook等で添付の .ipynb ファイルを読み込み、コメントに従って、入力 csv, 出力 csv ファイル名を記述して実行する。
+## treatment
+1. create a csv file with a column listing the chemical formulas (description example: LiCoO2, LiZr2(PO4)3 ) to be converted to descriptors. However, the first row of the column should be the label row.
+2. Load the attached .ipynb file with Jupyter notebook or other software, and follow the comments to write the input csv and output csv file names, and then run the program.
 
 
-## ライセンス、引用について (License, Citing)
-**ライセンス(About License)**　This software is released under the MIT License, see the LICENSE.
+## Licensing and citation  (License, Citing)
+**License(About License)**　This software is released under the MIT License, see the LICENSE.
 
-**引用先(Citing)**  R. Jalem, M. Nakayama, Y. Noda, T. Le, I. Takeuchi, Y. Tateyama, H. Yamasaki, "A general representation scheme for crystalline solids based on Voronoi-tessellation real feature values and atomic property data", Sci. Technol. Adv. Mater., 19, 231-242 (2018) [DOI: 10.1080/14686996.2018.1439253](https://doi.org/10.1080/14686996.2018.1439253)
+**Citation(Citing)**  R. Jalem, M. Nakayama, Y. Noda, T. Le, I. Takeuchi, Y. Tateyama, H. Yamasaki, "A general representation scheme for crystalline solids based on Voronoi-tessellation real feature values and atomic property data", Sci. Technol. Adv. Mater., 19, 231-242 (2018) [DOI: 10.1080/14686996.2018.1439253](https://doi.org/10.1080/14686996.2018.1439253)
 
 ## Funding
 科研費  19H05815, 20H02436
