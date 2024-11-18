@@ -481,7 +481,7 @@ def compdescript(aparam2,aparam3,reference):
                     k = k + 1      
                     PGmtrx[int(k)]=PGBox[int(i)][int(j)]  
                     k_list_index.append("{:.6f}".format(PGmtrx[k]))
-                    k_list_columns.append('PNmatrix_{}'.format(k))
+                    k_list_columns.append('PGmatrix_{}'.format(k))
                     j = j + 1
                 i = i + 1
             k_dict=dict(zip(k_list_columns,k_list_index))
@@ -522,7 +522,7 @@ def compdescript(aparam2,aparam3,reference):
                     k = k + 1      
                     PGmtrx[k]=PGBox[i][j]      
                     h_list_index.append("{:1.6f}".format(PGmtrx[k]))
-                    h_list_columns.append("PGmatrix_{}".format(k))
+                    h_list_columns.append("PNmatrix_{}".format(k))
                     j = j + 1
                 i = i + 1     
             h_dict=dict(zip(h_list_columns,h_list_index))
