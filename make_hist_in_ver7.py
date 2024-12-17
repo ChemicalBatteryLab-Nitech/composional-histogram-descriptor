@@ -556,7 +556,8 @@ def compdescript(aparam2,aparam3,reference):
                         
                     if  kk1 == 'nodata' or kk2 == 'nodata':
                         j=j+1
-                        return 'owari'
+                        PGBox[int(kk1)][int(kk2)]=inty1+inty2+PGBox[int(kk1)][int(kk2)]
+                        #return 'owari'
                         #PGBox[11][11]=inty1+inty2+PGBox[11][11]
                         
                     else:
@@ -594,8 +595,10 @@ def compdescript(aparam2,aparam3,reference):
                 f_list_index.append("{} {:1.6f} {:1.6f}".format(ENatom,float(readdefelem(ENatom,elem_csv)[FN][ENatom]),inty))
                 f_list_columns.append('out.{}_{}'.format(FN,i))
             else:
-                i=i+1
-                return 'owari'
+                #i=i+1
+                f_list_index.append("{} {:1.6f} {:1.6f}".format(ENatom,0,inty))
+                f_list_columns.append('out.{}_{}'.format(FN,i))
+                #return 'owari'
                 #f_list_index.append("{} {} {:1.6f}".format(ENatom,readdefelem(ENatom,elem_csv)[FN][ENatom],inty))
                 #f_list_columns.append('out.{}_{}'.format(FN,i))
             i = i + 1
@@ -618,16 +621,25 @@ def compdescript(aparam2,aparam3,reference):
                     ENatom2=x[2][j]      
                     inty2=x[0][j]/x[3]
                     if readdefelem(ENatom1,elem_csv)[FN][ENatom1] != 'nodata' and readdefelem(ENatom2,elem_csv)[FN][ENatom2] != 'nodata':
+                        #print("{}-{} {:1.6f} {:1.6f}".format(ENatom1,ENatom2,math.log(float(readdefelem(ENatom1,elem_csv)[FN][ENatom1]))+math.log(float(readdefelem(ENatom2,elem_csv)[FN][ENatom2])),inty1+inty2))
                         m_list_index.append("{}-{} {:1.6f} {:1.6f}".format(ENatom1,ENatom2,math.log(float(readdefelem(ENatom1,elem_csv)[FN][ENatom1]))+math.log(float(readdefelem(ENatom2,elem_csv)[FN][ENatom2])),inty1+inty2))
                         m_list_columns.append('out.{}{}_{}'.format(FN,FN,i))
                         #m_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,readdefelem(ENatom1,df_csv)[FN][ENatom1],inty1+inty2))
                         #m_list_columns.append('out.{}{}_{}'.format(FN,FN,i))
                         #m_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,readdefelem(ENatom2,df_csv)[FN][ENatom2],inty1+inty2))
                         #m_list_columns.append('out.{}{}_{}'.format(FN,FN,i))
-                    else:
-                        return 'owari'
+                    elif readdefelem(ENatom1,elem_csv)[FN][ENatom1] == 'nodata' and readdefelem(ENatom2,elem_csv)[FN][ENatom2] != 'nodata':
+                        m_list_index.append("{}-{} {:1.6f} {:1.6f}".format(ENatom1,ENatom2,0+math.log(float(readdefelem(ENatom2,elem_csv)[FN][ENatom2])),inty1+inty2))
+                        m_list_columns.append('out.{}{}_{}'.format(FN,FN,i))
+                    elif readdefelem(ENatom1,elem_csv)[FN][ENatom1] != 'nodata' and readdefelem(ENatom2,elem_csv)[FN][ENatom2] == 'nodata':
+                        m_list_index.append("{}-{} {:1.6f} {:1.6f}".format(ENatom1,ENatom2,math.log(float(readdefelem(ENatom1,elem_csv)[FN][ENatom1]))+0,inty1+inty2))
+                        m_list_columns.append('out.{}{}_{}'.format(FN,FN,i))
+                        #return 'owari'
                         #m_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,readdefelem(ENatom2,df_csv)[FN][ENatom2],inty1+inty2))
                         #m_list_columns.append('out.{}{}_{}'.format(FN,FN,i))
+                    else:
+                        m_list_index.append("{}-{} {:1.6f} {:1.6f}".format(ENatom1,ENatom2,0+0,inty1+inty2))
+                        m_list_columns.append('out.{}{}_{}'.format(FN,FN,i))
                     j = j + 1
                 i = i + 1
             #m.close()
@@ -654,18 +666,24 @@ def compdescript(aparam2,aparam3,reference):
                         o_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,abs(float(readdefelem(ENatom1,elem_csv)[FN][ENatom1])-float(readdefelem(ENatom2,elem_csv)[FN][ENatom2])),inty1+inty2))      
                         o_list_columns.append('out.{}-{}_{}'.format(FN,FN,i))
                     elif readdefelem(ENatom1,elem_csv)[FN][ENatom1] == 'nodata' and readdefelem(ENatom2,elem_csv)[FN][ENatom2] != 'nodata':
-                        j=j+1
-                        return 'owari'
+                        #j=j+1
+                        o_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,abs(0-float(readdefelem(ENatom2,elem_csv)[FN][ENatom2])),inty1+inty2))      
+                        o_list_columns.append('out.{}-{}_{}'.format(FN,FN,i))
+                        #return 'owari'
                         #o_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,readdefelem(ENatom1,elem_csv)[FN][ENatom1],inty1+inty2))      
                         #o_list_columns.append('out.{}-{}_{}'.format(FN,FN,i))
                     elif readdefelem(ENatom1,elem_csv)[FN][ENatom1] != 'nodata' and readdefelem(ENatom2,elem_csv)[FN][ENatom2] == 'nodata':
-                        j=j+1
-                        return 'owari'
+                        #j=j+1
+                        o_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,abs(float(readdefelem(ENatom1,elem_csv)[FN][ENatom1])-0),inty1+inty2))        
+                        o_list_columns.append('out.{}-{}_{}'.format(FN,FN,i))
+                        #return 'owari'
                         #o_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,readdefelem(ENatom2,elem_csv)[FN][ENatom2],inty1+inty2))      
                         #o_list_columns.append('out.{}-{}_{}'.format(FN,FN,i))
                     else:
-                        j=j+1
-                        return 'owari'
+                        #j=j+1
+                        o_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,0,inty1+inty2))      
+                        o_list_columns.append('out.{}-{}_{}'.format(FN,FN,i))
+                        #return 'owari'
                         #o_list_index.append("{}-{} {} {:1.6f}".format(ENatom1,ENatom2,readdefelem(ENatom2,elem_csv)[FN][ENatom2],inty1+inty2))      
                         #o_list_columns.append('out.{}-{}_{}'.format(FN,FN,i))
                     j = j + 1
