@@ -106,7 +106,7 @@ print("First 10 features:", vec[:10])
 
 This returns:
 - `vec` : a NumPy 1D array containing the descriptor values (broadened histogram)
-- `labels` : a list of feature names corresponding to each element of `vec`
+- `labels` : a list of feature names corresponding to each elemental property of `vec`
 
 
 ### 4.2. CLI execution (optional)
