@@ -51,10 +51,8 @@ and the resulting vectors are visualized as graphs.<BR>>
 | Crystal Radius               | CrR           | —                                  |
 | Group Number                 | PG            | —                                  |
 | Period Number                | PN            | —                                  |
-| s, p, d, f Orbital Type      | SPDF          | —                                  |
-| Group Number Matrix          | PG matrix     | Histogram based on group numbers   |
-| Period Number Matrix         | PN matrix     | Histogram based on period numbers  |
-| s, p, d, f Orbital Matrix    | SPDF matrix   | Histogram based on orbital type    |
+| s, p, d, f block elements      | SPDF          | SPDF_0, _1, _2, _3  correspond to concentrations of s-, p-, d-, f- block elements                                  |
+
 
 
 ![image](https://user-images.githubusercontent.com/106161035/179660789-8307643e-cf73-4128-ab5a-0916b501c481.png)
