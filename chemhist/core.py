@@ -12,7 +12,7 @@ import pandas as pd
 path=os.getcwd()
 
 def compconv(reference): #-------------------------------------------------------------------------------                                                                         
-#input incomp or reference[0]  eg Li0.1CoO2                                                                                                                          
+#input incomp or reference[0]  eg Li0.5CoO2                                                                                                                          
 #output  indexions[i] -> element                                                                                                                                     
 #        ions[i]      -> number of ions                                                                                                                              
 #        totalion      -> summation of ions                                                                                             
@@ -259,7 +259,7 @@ def broad(df,arg3,df_hist,j_list_nise): #---------------------------------------
     return g_df
 
 
-def dfmake(arg0,arg1,arg2,arg3,arg4,arg5,arg6,aparam2,aparam3,df,df_csv): #----------------------------------------------------------------------------------                                                                        
+def dfmake(arg0,arg3,arg4,arg5,arg6,aparam2,aparam3,df,df_csv): #----------------------------------------------------------------------------------                                                                        
 
     """
     try:
@@ -293,8 +293,10 @@ def dfmake(arg0,arg1,arg2,arg3,arg4,arg5,arg6,aparam2,aparam3,df,df_csv): #-----
 
     df_hist=1
 
-    clmx=arg1 
-    clmy=arg2
+    #clmx=arg1 
+    #clmy=arg2
+    clmx=2
+    clmy=3
     minx=arg3 
     maxx=arg4
     binnum=arg5
@@ -322,7 +324,6 @@ def dfmake(arg0,arg1,arg2,arg3,arg4,arg5,arg6,aparam2,aparam3,df,df_csv): #-----
             orgy[n]=abs(float(orgy[n]))
         n = n+1
     
-
     totaldata=n-1
 
     int_=[]
@@ -385,7 +386,9 @@ def dfmake(arg0,arg1,arg2,arg3,arg4,arg5,arg6,aparam2,aparam3,df,df_csv): #-----
         X =broad(df,arg3,df_hist,j_list_nise)
         j_df = X
     
-    return arg1,arg2,arg3,arg4,arg5,arg6,j_df
+    dummy=0
+
+    return dummy, dummy, arg3,arg4,arg5,arg6,j_df
      
 def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
     if algebricdesc:
@@ -455,17 +458,11 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
 
         for col_h ,hh in zip(column_inc_hist,h_list):
             ie=0
-            while ie <= 5:
+            while ie <= 3:  #5
                 df_csv.at[ie,hh]=df_csv.at[ie,col_h]
                 ie = ie + 1
 
     x =compconv(reference) 
-    #reference.append('')
-    #if reference[1] == "":
-    #    sigma=0.0 
-    #else:
-    #    sigma=reference[1] 
-
     
     PGBox={k: k for k in range(19)}
     def_PGBox={l: l for l in range(19)}
@@ -724,21 +721,8 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
         list_reference.append(float(df_csv.at[1,FN]))      
         list_reference.append(float(df_csv.at[2,FN]))      
         list_reference.append(float(df_csv.at[3,FN]))      
-        list_reference.append(float(df_csv.at[4,FN]))
-        list_reference.append(float(df_csv.at[5,FN]))    
 
-        # #print(list_reference)
-        # if df_csv.at[5,FN] =='T':
-        #     list_reference.append(df_csv.at[5,FN])
-        # else:
-        #     list_reference.append(float(df_csv.at[5,FN]))    
 
-        #       if ($aparam[3] == 0){$reference[6]=0 } 
-        #if aparam3 == 0:
-        #    list_reference[6]=0
-        #print(df_csv[FN])
-        #print(list_reference)
-        
         z = dfmake(*list_reference,aparam2,aparam3,ans_df_dict[FN],df_csv)
         z=list(z)
         if z[6].empty :
