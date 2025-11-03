@@ -1,6 +1,6 @@
 # chemhist — Chemical Formula to Histogram Descriptor
 
-A Python package for generating histogram-based compositional descriptors from chemical formulas.
+A Python package for generating histogram-based compositional descriptors from chemical formulas (chemhist descriptors).
 
 Developed by **Tsubasa Koyama** and **Masanobu Nakayama**  
 _Nagoya Institute of Technology, Chamical Battery Laboratory_
@@ -8,7 +8,7 @@ _Nagoya Institute of Technology, Chamical Battery Laboratory_
 ## 1. Overview
 
 `chemhist` converts chemical compositions into histogram-type vector descriptors based on elemental properties (atomic number, electronegativity, etc.).  
-These descriptors are designed for use in **Materials Informatics (MI)** and other machine learning analyses.
+These descriptors are designed for use in machine learning analyses for materials (Materials Informatics).
 
 ## 2. Description
 
@@ -20,9 +20,7 @@ that constitute the composition—such as atomic number, electronegativity, and 
 Figure 1 illustrates the generation process of a histogram descriptor using electronegativity (EN)
 for the chemical formula Li₁₀Zn₃Ge₄O₆ as an example.
 
-
 ![image](https://user-images.githubusercontent.com/106161035/179660726-05805eea-46f3-407f-8a4c-46d5e0ec1325.png)
-
 
 The number line shown in Figure 1 represents electronegativity.
 By dividing the number line into appropriate intervals and calculating the number of elements contained within each interval
@@ -53,7 +51,6 @@ and the resulting vectors are visualized as graphs.<BR>>
 | Group Number                 | PG            | —                                  |
 | Period Number                | PN            | —                                  |
 | s, p, d, f block elements      | SPDF          | SPDF_0, _1, _2, _3  correspond to concentrations of s-, p-, d-, f- block elements                                  |
-
 
 ![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
 
