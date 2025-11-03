@@ -97,8 +97,8 @@ The main function is `get_descriptor()`, which converts a chemical formula into 
 ```python
 from chemhist import get_descriptor
 
-# Example: create histogram descriptor for Li0.5Mn0.5O2
-vec, labels = get_descriptor("Li0.5Mn0.5O2")
+# Example: create histogram descriptor for Li0.5Mn1.0O2
+vec, labels = get_descriptor("Li0.5Mn1.0O2")
 
 print("Number of features:", len(vec))
 print("First 10 features:", vec[:10])
