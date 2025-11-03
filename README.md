@@ -5,14 +5,14 @@ A Python package for generating histogram-based compositional descriptors from c
 Developed by **Tsubasa Koyama** and **Masanobu Nakayama**  
 _Nagoya Institute of Technology, Chamical Battery Laboratory_
 
-## Overview
+## 1. Overview
 
 `chemhist` converts chemical compositions into histogram-type vector descriptors based on elemental properties (atomic number, electronegativity, etc.).  
 These descriptors are designed for use in **Materials Informatics (MI)** and other machine learning analyses.
 
-## Details
+## 2. Description
 
-### Standard Chemhist descriptors
+### 2.1 Standard Chemhist descriptors
 To handle the chemical compositions of materials (mainly inorganic solid compounds) in data science,
 it is convenient to represent them as descriptors, which are one-dimensional numerical vectors.
 This script converts chemical compositions into histogram descriptors by transforming the elemental properties
@@ -57,12 +57,12 @@ and the resulting vectors are visualized as graphs.<BR>>
 
 ![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
 
-### Algebric Descriptors
+### 2.2 Algebric Descriptors
 
-### Matrix Descriptors
+### 2.3 Matrix Descriptors
 
 
-## Usage
+## 3. Usage
 
 1. Prepare a CSV file containing a column of chemical formulas  
    (e.g., `LiCoO2`, `LiZr2(PO4)3`). The first row must be the header.
@@ -73,10 +73,10 @@ and the resulting vectors are visualized as graphs.<BR>>
 
 
 
-## Licensing and citation  (License, Citing)
+## 4. Licensing and citation  (License, Citing)
 **License(About License)**　This software is released under the MIT License, see the LICENSE.
 
 **Citation(Citing)**  R. Jalem, M. Nakayama, Y. Noda, T. Le, I. Takeuchi, Y. Tateyama, H. Yamasaki, "A general representation scheme for crystalline solids based on Voronoi-tessellation real feature values and atomic property data", Sci. Technol. Adv. Mater., 19, 231-242 (2018) [DOI: 10.1080/14686996.2018.1439253](https://doi.org/10.1080/14686996.2018.1439253)
 
-## Funding
-科研費  19H05815, 20H02436
+## 5. Funding
+Kakenhi 19H05815, 20H02436, Japan
