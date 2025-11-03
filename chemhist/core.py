@@ -378,13 +378,12 @@ def dfmake(arg0,arg1,arg2,arg3,arg4,arg5,arg6,aparam2,aparam3,df,df_csv): #-----
     j_dict=dict(zip(j_list_columns,j_list_index))
     j_df=pd.DataFrame(j_dict,index=['test'])
     
-    if sigma !='T':
-        if float(sigma) > 0:
-            df = j_df
-            arg3 = sigma
-            df_hist = ""
-            X =broad(df,arg3,df_hist,j_list_nise)
-            j_df = X
+    if sigma > 0:
+        df = j_df
+        arg3 = sigma
+        df_hist = ""
+        X =broad(df,arg3,df_hist,j_list_nise)
+        j_df = X
     
     return arg1,arg2,arg3,arg4,arg5,arg6,j_df
      
@@ -421,7 +420,6 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
 
     #elem_csv = pd.read_csv('./chemhist/data/def_elem_property.csv')
     #df_csv   = pd.read_csv('./chemhist/data/def_hist_settings.csv')
-
 
     filename=elem_csv.columns.tolist()
     filename=[des for des in filename if des not in ['element_symbol','Endatastat.']]
@@ -727,16 +725,20 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
         list_reference.append(float(df_csv.at[2,FN]))      
         list_reference.append(float(df_csv.at[3,FN]))      
         list_reference.append(float(df_csv.at[4,FN]))
-        #print(list_reference)
-        if df_csv.at[5,FN] =='T':
-            list_reference.append(df_csv.at[5,FN])
-        else:
-            list_reference.append(float(df_csv.at[5,FN]))    
+        list_reference.append(float(df_csv.at[5,FN]))    
+
+        # #print(list_reference)
+        # if df_csv.at[5,FN] =='T':
+        #     list_reference.append(df_csv.at[5,FN])
+        # else:
+        #     list_reference.append(float(df_csv.at[5,FN]))    
+
         #       if ($aparam[3] == 0){$reference[6]=0 } 
         #if aparam3 == 0:
         #    list_reference[6]=0
         #print(df_csv[FN])
         #print(list_reference)
+        
         z = dfmake(*list_reference,aparam2,aparam3,ans_df_dict[FN],df_csv)
         z=list(z)
         if z[6].empty :
@@ -814,7 +816,6 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
                 np_dict[key] = df.to_numpy(dtype=float)
                 labels_dict[key] = list(df.columns)
         return np_dict, labels_dict
-
 
     df_dict_np, labels_dict      = to_numpy_dict(df_dict)
     df_kake_dict_np, kake_labels = to_numpy_dict(df_kake_dict)
