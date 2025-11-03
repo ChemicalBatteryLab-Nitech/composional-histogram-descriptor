@@ -53,6 +53,8 @@ and the resulting vectors are visualized as graphs.<BR>>
 | s, p, d, f block elements      | SPDF          | SPDF_0, _1, _2, _3  correspond to concentrations of s-, p-, d-, f- block elements                                  |
 
 ![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
+<img width="602" height="285" alt="image" src="https://github.com/user-attachments/assets/59166fa1-4de2-4e74-87ce-c085bdd7735b" />
+
 
 ### 2.2 Algebric Descriptors
 
