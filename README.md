@@ -1,17 +1,28 @@
-# Chemical formula derived Histogram descriptor
+# chemhist — Chemical Formula to Histogram Descriptor
 
-Histogram descriptor creation program derived from chemical composition formula
+A Python package for generating histogram-based compositional descriptors from chemical formulas.
 
-Created by Tsubasa KOYAMA (Nagoya Institute of Technology, Nakayama Lab)
+Developed by **Tsubasa Koyama** and **Masanobu Nakayama**  
+_Nagoya Institute of Technology, Nakayama Laboratory_
+
+## Overview
+
+`chemhist` converts chemical compositions into histogram-type vector descriptors based on elemental properties (atomic number, electronegativity, etc.).  
+These descriptors are designed for use in **Materials Informatics (MI)** and other machine learning analyses, avoiding problems such as missing values or inconsistent feature dimensions among compounds.
 
 
-## Summary
-This is a descriptor creation script that converts various types of information (atomic number, electronegativity, etc.) derived from chemical composition into a general-purpose histogram format. It can be used as a descriptor for machine learning analysis in Materials Infomatics (output is in continuous quantity format).
+## Concept and Motivation
 
-## detailed explanation
-When creating descriptors for a particular system, it is possible to use the corresponding values without adopting a histogram descriptor. However, if the systems are not unified in the target material group, problems such as "defective values are generated in the descriptors" or "descriptors with different meanings are entered in the same column" may occur. If the system is not unified in the material group, problems such as "defective descriptors" or "descriptors with different meanings are entered in the same column" will occur. In machine learning, it is basically difficult to learn when missing values are generated. Also, if descriptors with different meanings are entered in the same column, information that is chemically meaningless for comparison is compared, making it impossible to create a highly accurate prediction model. Histogram descriptors can avoid such problems. Figure 1 shows a model for creating a histogram descriptor using electronegativity (EN) for Li10Zn3Ge4O6 as an example.
+When building descriptors for multiple material systems, direct use of elemental properties may cause problems:
+- **Missing values** appear when some elements lack property data.
+- **Inconsistent features** occur when descriptors of different meanings occupy the same column.
+
+To solve this, histogram descriptors express elemental properties as continuous distributions.  
+Figure 1 illustrates the process using electronegativity (EN) for Li₁₀Zn₃Ge₄O₆.
+
 
 ![image](https://user-images.githubusercontent.com/106161035/179660726-05805eea-46f3-407f-8a4c-46d5e0ec1325.png)
+
 
 In Figure 1, electronegativity values are separated at appropriate intervals, and a general vector format descriptor is created by calculating the concentration of the element that falls within each interval. However, since machine learning cannot learn the adjacency of these delimited intervals, an appropriate Gaussian function is applied to smooth the histogram. By representing the multiple information that such compositions contain in vector form, the above problem can be avoided and can be handled for any composition. The elemental properties that can be converted into histogram descriptors with this script are shown in Table 1. Figure 2 shows an example of converting the properties shown in Table 1 into histogram descriptors and combining the vectors. The histogram descriptor is created in this manner.
 
@@ -19,9 +30,15 @@ In Figure 1, electronegativity values are separated at appropriate intervals, an
 ![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
 
 
-## treatment
-1. create a csv file with a column listing the chemical formulas (description example: LiCoO2, LiZr2(PO4)3 ) to be converted to descriptors. However, the first row of the column should be the label row.
-2. Load the attached .ipynb file with Jupyter notebook or other software, and follow the comments to write the input csv and output csv file names, and then run the program.
+## Usage
+
+1. Prepare a CSV file containing a column of chemical formulas  
+   (e.g., `LiCoO2`, `LiZr2(PO4)3`). The first row must be the header.
+2. Open the provided Jupyter notebook (`chemhist_demo.ipynb`) or import the module directly in Python:
+   ```python
+   from chemhist import get_descriptor
+   vec, labels = get_descriptor("Li0.5Mn0.5O2")
+
 
 
 ## Licensing and citation  (License, Citing)
