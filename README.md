@@ -23,7 +23,18 @@ for the chemical formula Li₁₀Zn₃Ge₄O₆ as an example.
 ![image](https://user-images.githubusercontent.com/106161035/179660726-05805eea-46f3-407f-8a4c-46d5e0ec1325.png)
 
 
-In Figure 1, electronegativity values are separated at appropriate intervals, and a general vector format descriptor is created by calculating the concentration of the element that falls within each interval. However, since machine learning cannot learn the adjacency of these delimited intervals, an appropriate Gaussian function is applied to smooth the histogram. By representing the multiple information that such compositions contain in vector form, the above problem can be avoided and can be handled for any composition. The elemental properties that can be converted into histogram descriptors with this script are shown in Table 1. Figure 2 shows an example of converting the properties shown in Table 1 into histogram descriptors and combining the vectors. The histogram descriptor is created in this manner.
+The number line shown in Figure 1 represents electronegativity.
+By dividing the number line into appropriate intervals and calculating the number of elements contained within each interval
+(normalized to a total atomic fraction of 1, i.e., treated as concentration),
+a general vector-type descriptor is created.
+
+However, since machine learning models cannot directly learn the adjacency relationships between these discrete intervals,
+an appropriate Gaussian function is applied to smooth the histogram,
+and the resulting data are output as a vector.
+
+Table 1 lists the elemental properties and their abbreviations that can be converted into histogram descriptors using this script.
+Figure 2 illustrates an example in which the properties listed in Table 1 are converted into histogram descriptors
+and the resulting vectors are visualized as graphs.
 
 ![image](https://user-images.githubusercontent.com/106161035/179660789-8307643e-cf73-4128-ab5a-0916b501c481.png)
 ![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
