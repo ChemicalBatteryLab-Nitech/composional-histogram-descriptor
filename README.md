@@ -71,13 +71,6 @@ cd path/to/chemhist_project
 pip install .
 ```
 
-If you plan to modify the source code and want the changes to take effect immediately,  
-use **editable mode**:
-
-```bash
-pip install -e .
-```
-
 If you encounter any build errors (for example, *access denied* or *failed to build wheel*),  
 clean up previous build directories and try again:
 
