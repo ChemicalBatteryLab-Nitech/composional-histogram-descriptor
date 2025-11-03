@@ -69,6 +69,33 @@ Make sure you are in the directory that contains the `pyproject.toml` file.
 ```bash
 cd path/to/chemhist_project
 pip install .
+```
+
+If you plan to modify the source code and want the changes to take effect immediately,  
+use **editable mode**:
+
+```bash
+pip install -e .
+```
+
+If you encounter any build errors (for example, *access denied* or *failed to build wheel*),  
+clean up previous build directories and try again:
+
+```bash
+# Windows PowerShell
+Remove-Item -Recurse -Force build, dist, chemhist.egg-info
+```
+
+To verify that the installation was successful:
+
+```python
+import chemhist
+print(chemhist.__file__)
+```
+
+If the package is installed correctly, the path to  
+`site-packages/chemhist/__init__.py` will be displayed.
+
 
 ### 3.2 Usage
 
