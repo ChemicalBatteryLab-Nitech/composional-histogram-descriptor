@@ -21,6 +21,7 @@ Figure 1 illustrates the generation process of a histogram descriptor using elec
 for the chemical formula Li₁₀Zn₃Ge₄O₆ as an example.
 
 ![image](./fig/fig1.png)
+**Figure 1** a) Histogram descriptor for electronegativity.  b) Histogram for all elemental properties. <BR><BR>
 
 The number line shown in Figure 1 represents electronegativity.
 By dividing the number line into appropriate intervals and calculating the number of elements contained within each interval
