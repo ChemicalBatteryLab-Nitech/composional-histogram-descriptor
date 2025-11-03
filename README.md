@@ -34,7 +34,28 @@ and the resulting data are output as a vector.
 
 Table 1 lists the elemental properties and their abbreviations that can be converted into histogram descriptors using this script.
 Figure 2 illustrates an example in which the properties listed in Table 1 are converted into histogram descriptors
-and the resulting vectors are visualized as graphs.
+and the resulting vectors are visualized as graphs.<BR>>
+
+**Table 1** Elemental properties used for chemhist descriptors
+
+| Property                     | Abbreviation | Description / Related Quantity     |
+|------------------------------|---------------|------------------------------------|
+| Electronegativity            | EN            | —                                  |
+| Atomic Number                | AN            | —                                  |
+| Mendeleev Number             | MN            | —                                  |
+| Atomic Weight                | AW            | —                                  |
+| Melting Point                | MP            | —                                  |
+| Covalent Radius              | CoR           | —                                  |
+| Atomic Radius                | AR            | —                                  |
+| Ionic Radius                 | IR            | —                                  |
+| Crystal Radius               | CrR           | —                                  |
+| Group Number                 | PG            | —                                  |
+| Period Number                | PN            | —                                  |
+| s, p, d, f Orbital Type      | SPDF          | —                                  |
+| Group Number Matrix          | PG matrix     | Histogram based on group numbers   |
+| Period Number Matrix         | PN matrix     | Histogram based on period numbers  |
+| s, p, d, f Orbital Matrix    | SPDF matrix   | Histogram based on orbital type    |
+
 
 ![image](https://user-images.githubusercontent.com/106161035/179660789-8307643e-cf73-4128-ab5a-0916b501c481.png)
 ![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
