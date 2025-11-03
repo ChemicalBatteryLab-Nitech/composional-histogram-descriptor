@@ -59,9 +59,7 @@ and the resulting vectors are visualized as graphs.<BR>>
 ### 2.3 Matrix Descriptors
 
 
-## 3. Install & Usage
-
-### 3.1 Installation
+## 3. Installation
 
 `chemhist` can be installed locally from source using `pip`.  
 Make sure you are in the directory that contains the `pyproject.toml` file.
@@ -90,21 +88,130 @@ If the package is installed correctly, the path to
 `site-packages/chemhist/__init__.py` will be displayed.
 
 
-### 3.2 Usage
-
-1. Prepare a CSV file containing a column of chemical formulas  
-   (e.g., `LiCoO2`, `LiZr2(PO4)3`). The first row must be the header.
-2. Open the provided Jupyter notebook (`chemhist_demo.ipynb`) or import the module directly in Python:
-   ```python
-   from chemhist import get_descriptor
-   vec, labels = get_descriptor("Li0.5Mn1.0O2")
+## 4 Usage
 
 
+### 4.1. Import and generate descriptors
+The main function is `get_descriptor()`, which converts a chemical formula into a histogram-based descriptor vector.
 
-## 4. Licensing and citation  (License, Citing)
+```python
+from chemhist import get_descriptor
+
+# Example: create histogram descriptor for Li0.5Mn0.5O2
+vec, labels = get_descriptor("Li0.5Mn0.5O2")
+
+print("Number of features:", len(vec))
+print("First 10 features:", vec[:10])
+```
+
+This returns:
+- `vec` : a NumPy 1D array containing the descriptor values (broadened histogram)
+- `labels` : a list of feature names corresponding to each element of `vec`
+
+---
+
+### 4.2. Generate descriptors for multiple compositions
+
+You can loop through multiple chemical compositions to build a dataset.
+
+```python
+from chemhist import get_descriptor
+import pandas as pd
+
+formulas = ["LiCoO2", "LiMnO2", "Na3PS4"]
+
+records = []
+for f in formulas:
+    vec, labels = get_descriptor(f)
+    records.append([f] + list(vec))
+
+df = pd.DataFrame(records, columns=["formula"] + labels)
+df.to_csv("chemhist_output.csv", index=False)
+
+print("Descriptors saved to chemhist_output.csv")
+```
+
+This will create a CSV file like:
+```
+formula, EN_1, EN_2, EN_3, ..., PG_10
+LiCoO2, 0.12, 0.08, 0.00, ..., 0.03
+LiMnO2, 0.10, 0.05, 0.02, ..., 0.01
+...
+```
+
+---
+
+### 4.3. Plot the histogram descriptor
+
+You can visualize the resulting histogram descriptors as a bar chart.
+
+```python
+import matplotlib.pyplot as plt
+from chemhist import get_descriptor
+
+vec, labels = get_descriptor("Li0.5Mn0.5O2")
+
+plt.figure(figsize=(12,4))
+plt.bar(range(len(vec)), vec)
+plt.xlabel("Descriptor index")
+plt.ylabel("Value")
+plt.title("Histogram Descriptor for Li0.5Mn0.5O2")
+plt.tight_layout()
+plt.show()
+```
+
+If you wish to group the bars by property type (e.g., EN, PG, AR...),  
+you can use the following snippet:
+
+```python
+props = [l.split("_")[0] for l in labels]
+unique_props = []
+for p in props:
+    if p not in unique_props:
+        unique_props.append(p)
+
+plt.figure(figsize=(12,4))
+for p in unique_props:
+    idx = [i for i, l in enumerate(labels) if l.startswith(p)]
+    plt.bar(idx, vec[idx], label=p)
+
+plt.legend(ncol=4)
+plt.xlabel("Descriptor Index")
+plt.ylabel("Value")
+plt.title("Histogram Descriptors Grouped by Property")
+plt.tight_layout()
+plt.show()
+```
+
+---
+
+### 4.4. CLI execution (optional)
+After installation, you can also run chemhist directly from the command line:
+
+```bash
+python -m chemhist LiCoO2 LiMnO2 --out descriptors.csv
+```
+
+This command will:
+- Convert the listed chemical formulas into histogram descriptors
+- Save the results into a CSV file (`descriptors.csv` by default)
+- Include the feature names in the header
+
+
+---
+
+### 4.6 Notes
+- The broadening is applied by a Gaussian smoothing function to make the histogram continuous.  
+- All descriptors are normalized by the total number of atoms in the formula.  
+- Missing data in elemental properties are handled automatically.  
+- The output vector can be directly used as input features for ML models (e.g., regression, classification).
+
+---
+
+## 5. Licensing and citation  (License, Citing)
 **License(About License)**　This software is released under the MIT License, see the LICENSE.
 
 **Citation(Citing)**  R. Jalem, M. Nakayama, Y. Noda, T. Le, I. Takeuchi, Y. Tateyama, H. Yamasaki, "A general representation scheme for crystalline solids based on Voronoi-tessellation real feature values and atomic property data", Sci. Technol. Adv. Mater., 19, 231-242 (2018) [DOI: 10.1080/14686996.2018.1439253](https://doi.org/10.1080/14686996.2018.1439253)
 
-## 5. Funding
+## Funding
 Kakenhi 19H05815, 20H02436, Japan
