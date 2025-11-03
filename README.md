@@ -12,6 +12,7 @@ These descriptors are designed for use in **Materials Informatics (MI)** and oth
 
 ## Details
 
+### Standard Chemhist descriptors
 To handle the chemical compositions of materials (mainly inorganic solid compounds) in data science,
 it is convenient to represent them as descriptors, which are one-dimensional numerical vectors.
 This script converts chemical compositions into histogram descriptors by transforming the elemental properties
@@ -54,9 +55,11 @@ and the resulting vectors are visualized as graphs.<BR>>
 | s, p, d, f block elements      | SPDF          | SPDF_0, _1, _2, _3  correspond to concentrations of s-, p-, d-, f- block elements                                  |
 
 
-
-#![image](https://user-images.githubusercontent.com/106161035/179660789-8307643e-cf73-4128-ab5a-0916b501c481.png)
 ![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
+
+### Algebric Descriptors
+
+### Matrix Descriptors
 
 
 ## Usage
