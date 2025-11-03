@@ -1,19 +1,28 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "chemhist"
 version = "0.1.0"
 description = "Chemical composition histogram descriptor generator"
-authors = [{name = "Masanobu Nakayama"}]
+authors = [
+    { name="Masanobu Nakayama" }
+]
+license = { text = "MIT" }
 readme = "README.md"
-license = {text = "MIT"}
 requires-python = ">=3.8"
-dependencies = ["pandas", "numpy"]
+dependencies = [
+    "numpy",
+    "pandas"
+]
 
-[tool.setuptools]
-packages = ["chemhist"]
+[tool.setuptools.packages.find]
+include = ["chemhist*"]
 
 [tool.setuptools.package-data]
 chemhist = ["data/*.csv"]
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
