@@ -20,7 +20,7 @@ that constitute the composition—such as atomic number, electronegativity, and 
 Figure 1 illustrates the generation process of a histogram descriptor using electronegativity (EN)
 for the chemical formula Li₁₀Zn₃Ge₄O₆ as an example.
 
-![image](https://user-images.githubusercontent.com/106161035/179660726-05805eea-46f3-407f-8a4c-46d5e0ec1325.png)
+![image](./fig/fig1.png)
 
 The number line shown in Figure 1 represents electronegativity.
 By dividing the number line into appropriate intervals and calculating the number of elements contained within each interval
