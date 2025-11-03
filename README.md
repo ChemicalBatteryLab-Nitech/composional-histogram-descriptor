@@ -23,17 +23,17 @@ for the chemical formula Li₁₀Zn₃Ge₄O₆ as an example.
 ![image](./fig/fig1.png)
 **Figure 1** a) Histogram descriptor for electronegativity.  b) Histogram for all elemental properties. <BR><BR>
 
-The number line shown in Figure 1 represents electronegativity.
-By dividing the number line into appropriate intervals and calculating the number of elements contained within each interval
-(normalized to a total atomic fraction of 1, i.e., treated as concentration),
-a general vector-type descriptor is created.
+The number line shown in Figure 1(a) represents electronegativity.
+By dividing the number line into appropriate intervals (bins) and counting the number of elements within each bin, a frequency distribution is obtained.
+This frequency is then normalized by the total number of atoms (i.e., converted into atomic fractions so that the total equals 1).
+The resulting normalized histogram is used to construct a general vector-type descriptor.
 
 However, since machine learning models cannot directly learn the adjacency relationships between these discrete intervals,
 an appropriate Gaussian function is applied to smooth the histogram,
 and the resulting data are output as a vector.
 
 Table 1 lists the elemental properties and their abbreviations that can be converted into histogram descriptors using this script.
-Figure 2 illustrates an example in which the properties listed in Table 1 are converted into histogram descriptors
+Figure 1(b) illustrates an example in which the properties listed in Table 1 are converted into histogram descriptors
 and the resulting vectors are visualized as graphs.<BR>>
 
 **Table 1** Elemental properties used for chemhist descriptors
@@ -52,9 +52,6 @@ and the resulting vectors are visualized as graphs.<BR>>
 | Group Number                 | PG            | —                                  |
 | Period Number                | PN            | —                                  |
 | s, p, d, f block elements      | SPDF          | SPDF_0, _1, _2, _3  correspond to concentrations of s-, p-, d-, f- block elements                                  |
-
-![image](https://user-images.githubusercontent.com/106161035/179660851-be54716f-4e81-47e1-a336-797c11b5581d.png)
-<img width="602" height="285" alt="image" src="https://github.com/user-attachments/assets/59166fa1-4de2-4e74-87ce-c085bdd7735b" />
 
 
 ### 2.2 Algebric Descriptors
