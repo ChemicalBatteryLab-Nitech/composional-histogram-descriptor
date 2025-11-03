@@ -61,7 +61,7 @@ and the resulting vectors are visualized as graphs.<BR>>
 
 ## 3. Installation
 
-`chemhist` can be installed locally from source using `pip`.  
+`chemhist` can be installed locally from source using `pip`.  Download source files to your local computer, such as by `git clone`.
 Make sure you are in the directory that contains the `pyproject.toml` file.
 
 ```bash
