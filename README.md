@@ -3,22 +3,21 @@
 A Python package for generating histogram-based compositional descriptors from chemical formulas.
 
 Developed by **Tsubasa Koyama** and **Masanobu Nakayama**  
-_Nagoya Institute of Technology, Nakayama Laboratory_
+_Nagoya Institute of Technology, Chamical Battery Laboratory_
 
 ## Overview
 
 `chemhist` converts chemical compositions into histogram-type vector descriptors based on elemental properties (atomic number, electronegativity, etc.).  
-These descriptors are designed for use in **Materials Informatics (MI)** and other machine learning analyses, avoiding problems such as missing values or inconsistent feature dimensions among compounds.
+These descriptors are designed for use in **Materials Informatics (MI)** and other machine learning analyses.
 
+## Details
 
-## Concept and Motivation
-
-When building descriptors for multiple material systems, direct use of elemental properties may cause problems:
-- **Missing values** appear when some elements lack property data.
-- **Inconsistent features** occur when descriptors of different meanings occupy the same column.
-
-To solve this, histogram descriptors express elemental properties as continuous distributions.  
-Figure 1 illustrates the process using electronegativity (EN) for Li₁₀Zn₃Ge₄O₆.
+To handle the chemical compositions of materials (mainly inorganic solid compounds) in data science,
+it is convenient to represent them as descriptors, which are one-dimensional numerical vectors.
+This script converts chemical compositions into histogram descriptors by transforming the elemental properties
+that constitute the composition—such as atomic number, electronegativity, and ionic radius—into histograms.
+Figure 1 illustrates the generation process of a histogram descriptor using electronegativity (EN)
+for the chemical formula Li₁₀Zn₃Ge₄O₆ as an example.
 
 
 ![image](https://user-images.githubusercontent.com/106161035/179660726-05805eea-46f3-407f-8a4c-46d5e0ec1325.png)
