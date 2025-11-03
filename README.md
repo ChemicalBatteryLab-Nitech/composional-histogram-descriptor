@@ -59,14 +59,25 @@ and the resulting vectors are visualized as graphs.<BR>>
 ### 2.3 Matrix Descriptors
 
 
-## 3. Usage
+## 3. Install & Usage
+
+### 3.1 Installation
+
+`chemhist` can be installed locally from source using `pip`.  
+Make sure you are in the directory that contains the `pyproject.toml` file.
+
+```bash
+cd path/to/chemhist_project
+pip install .
+
+### 3.2 Usage
 
 1. Prepare a CSV file containing a column of chemical formulas  
    (e.g., `LiCoO2`, `LiZr2(PO4)3`). The first row must be the header.
 2. Open the provided Jupyter notebook (`chemhist_demo.ipynb`) or import the module directly in Python:
    ```python
    from chemhist import get_descriptor
-   vec, labels = get_descriptor("Li0.5Mn0.5O2")
+   vec, labels = get_descriptor("Li0.5Mn1.0O2")
 
 
 
