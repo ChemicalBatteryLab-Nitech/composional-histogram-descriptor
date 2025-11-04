@@ -434,7 +434,7 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
     df_kake_dict={}
     df_hiki_dict={}
       
-    if aparam2 == 'T':     
+    if aparam2 == 'T':   #matrixdesc  
         for ff in filename:
             dict_df_csv = df_csv.to_dict()
             #print('dict_df_csv',dict_df_csv)
@@ -722,7 +722,6 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
         list_reference.append(float(df_csv.at[2,FN]))      
         list_reference.append(float(df_csv.at[3,FN]))      
 
-
         z = dfmake(*list_reference,aparam2,aparam3,ans_df_dict[FN],df_csv)
         z=list(z)
         if z[6].empty :
@@ -738,13 +737,13 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
         #outcompfile.append(z[7])
 
         if aparam3 == 'T':        
-            #list_reference[0]="list.{}{}-distfunc".format(FN,FN)     
-            list_reference[1]=float(df_csv.at[0,FN])     
-            list_reference[2]=float(df_csv.at[1,FN])     
-            list_reference[3]=-0.2*math.log(float(df_csv.at[3,FN]))     
-            list_reference[4]=2*math.log(float(df_csv.at[3,FN]))     
-            list_reference[5]=float(df_csv.at[4,FN])
-            list_reference[6]=2*math.log(float(df_csv.at[3,FN]))/float(df_csv.at[4,FN])      
+            list_reference[0]="list.{}{}-distfunc".format(FN,FN)     
+            #list_reference[1]=float(df_csv.at[0,FN])     
+            #list_reference[2]=float(df_csv.at[1,FN])     
+            list_reference[1]=-0.2*math.log(float(df_csv.at[1,FN]))     
+            list_reference[2]=2*math.log(float(df_csv.at[1,FN]))     
+            list_reference[3]=float(df_csv.at[2,FN])
+            list_reference[4]=2*math.log(float(df_csv.at[1,FN]))/float(df_csv.at[2,FN])      
             #if aparam3 == 0:        
             #    list_reference[6]=0
             z = dfmake(*list_reference,aparam2,aparam3,ans_df_kake_dict[FN],df_csv)
@@ -764,15 +763,12 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
             #outcompfile.append(z[7]) 
 
             #list_reference[0]="list.{}-{}-distfunc".format(FN,FN)      
-            list_reference[1]=float(df_csv.at[0,FN])       
+            #list_reference[1]=float(df_csv.at[0,FN])       
+            #list_reference[2]=float(df_csv.at[1,FN])      
+            list_reference[1]=float(df_csv.at[0,FN])      
             list_reference[2]=float(df_csv.at[1,FN])      
-            list_reference[3]=float(df_csv.at[2,FN])      
-            list_reference[4]=float(df_csv.at[3,FN])      
-            list_reference[5]=float(df_csv.at[4,FN])
-            if df_csv.at[5,FN] =='T':
-                list_reference[6]=df_csv.at[5,FN]
-            else:    
-                list_reference[6]=float(df_csv.at[5,FN]) 
+            list_reference[3]=float(df_csv.at[2,FN])
+            list_reference[4]=float(df_csv.at[3,FN])
 
             #if aparam3 == 0:
             #list_reference[6]=0
