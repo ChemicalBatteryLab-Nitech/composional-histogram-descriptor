@@ -350,10 +350,10 @@ def dfmake(arg0,arg3,arg4,arg5,arg6,aparam2,aparam3,df,df_csv): #---------------
     j_list_index=[]
     j_list_columns=[]
     j_list_nise=[]
-    if bool(re.search(r'[T]',str(aparam2),re.I)):
-        norm=totaldata+1
-    else:
-        pass
+    #if bool(re.search(r'[T]',str(aparam2),re.I)):
+    #    norm=totaldata+1
+    #else:
+    #    pass
     #elif aparam2 != '':
         #if aparam2 > 0:
         #    sumint=0
@@ -903,3 +903,4 @@ if __name__ == "__main__":
                 continue
 
     print(f"\nFinish: Output written to: {out_csv}")
+
