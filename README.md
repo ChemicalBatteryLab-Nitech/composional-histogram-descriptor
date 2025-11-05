@@ -38,17 +38,17 @@ and the resulting vectors are visualized as graphs.<BR>>
 
 **Table 1** Elemental properties used for chemhist descriptors
 
-| Property                     | Abbreviation | Description / Related Quantity     |
+| Property                     | Abbreviation | Description or Reference     |
 |------------------------------|---------------|------------------------------------|
-| Electronegativity            | EN            | —                                  |
 | Atomic Number                | AN            | —                                  |
-| Mendeleev Number             | MN            | —                                  |
-| Atomic Weight                | AW            | —                                  |
-| Melting Point                | MP            | —                                  |
-| Covalent Radius              | CoR           | —                                  |
-| Atomic Radius                | AR            | —                                  |
-| Ionic Radius                 | IR            | —                                  |
-| Crystal Radius               | CrR           | —                                  |
+| Electronegativity            | EN            | Allred, A. L. & Rochow, E. G., J. Inorg. Nucl. Chem. 5, 264–268 (1958). |
+| Mendeleev Number             | MN            | Villars, P. Journal of Alloys and Compounds, 367, 167-175 (2004).  |
+| Atomic Weight                | AW            | —                       |
+| Melting Point                | MP            | Kaye, G. W. C. & Lavy, T. H. Macmillan’s Chemical and Physical Data. (Longman, 1993).   |
+| Covalent Radius              | CoR           | Cordero, B. et al. Dalt. Trans. 2832–2838 (2008) |
+| Atomic Radius                | AR            | Clementi, E. & Raimondi, D. L., J. Chem. Phys. 38, 2686–2689 (2004).   |
+| Ionic Radius                 | IR            | Slater, J. C., J. Chem. Phys. 41, 3199–3204 (2004) |
+| Crystal Radius               | CrR           | Shannon, R. D., Acta Crystallogr. Sect. A 32, 751–767 (1976)                                  |
 | Group Number                 | PG            | —                                  |
 | Period Number                | PN            | —                                  |
 | s, p, d, f block elements      | SPDF          | SPDF_0, _1, _2, _3  correspond to concentrations of s-, p-, d-, f- block elements                                  |
