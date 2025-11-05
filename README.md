@@ -36,7 +36,7 @@ Table 1 lists the elemental properties and their abbreviations that can be conve
 Figure 1(b) illustrates an example in which the properties listed in Table 1 are converted into histogram descriptors
 and the resulting vectors are visualized as graphs.<BR>>
 
-**Table 1** Elemental properties used for chemhist descriptors
+**Table 1** Elemental properties used for chemhist descriptors (listed in data/def_elem_property.csv)
 
 | Property                     | Abbreviation | Description or Reference     |
 |------------------------------|---------------|------------------------------------|
@@ -52,6 +52,26 @@ and the resulting vectors are visualized as graphs.<BR>>
 | Group Number                 | PG            | —                                  |
 | Period Number                | PN            | —                                  |
 | s, p, d, f block elements      | SPDF          | SPDF_0, _1, _2, _3  correspond to concentrations of s-, p-, d-, f- block elements                                  |
+
+
+**Table 2** Default settings for histogram (distribution function): min, max, and bin correspond to the minimum value, maximum value, and number of divisions (bins) for the elemental property distribution, respectively.
+sigma represents the width of the Gaussian broadening applied to the histogram.Elemental properties used for chemhist descriptors (listedin data/def_hist_settings.csv)
+
+| Item | Min  | Max  | Bin | Sigma |
+|------|------|------|-----|-------|
+| AN   | 1    | 103  | 102 | 0     |
+| EN   | -1   | 5    | 50  | 0.2   |
+| MP   | -1000| 5000 | 50  | 200   |
+| PN   | -2   | 10   | 20  | 0.4   |
+| PG   | -4   | 20   | 20  | 0.8   |
+| MN   | -24  | 120  | 102 | 4.8   |
+| AW   | -80  | 400  | 50  | 16    |
+| AR   | -0.2 | 3.2  | 50  | 0.128 |
+| IR   | -0.2 | 3.2  | 50  | 0.128 |
+| CoR  | -0.2 | 3.2  | 50  | 0.128 |
+| CrR  | -0.2 | 3.2  | 50  | 0.128 |
+| spdf | 1    | 5    | 4   | 0     |
+
 
 
 ### 2.2 Algebric Descriptors
@@ -89,13 +109,6 @@ By plotting ΔEN on the x-axis and the pair concentration on the y-axis,
 we can observe that Li–O and Mn–O pairs dominate the overall distribution.  
 The spread and peak positions of ΔEN reflect the diversity of bonding character—  
 for instance, larger ΔEN values indicate more ionic bonding tendencies.
-
-**Features**
-
-- Represents **element-pair-level interactions** via property differences or products.  
-- Captures **chemical heterogeneity** and **bonding diversity** beyond simple mean descriptors.  
-- Enables comparison of inter-element relationships without requiring crystal structure information.  
-- Gaussian broadening provides smooth and continuous histogram distributions.
 
 
 ### 2.3 Matrix Descriptors
