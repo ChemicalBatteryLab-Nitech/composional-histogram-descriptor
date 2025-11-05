@@ -443,8 +443,8 @@ def get_descriptor(reference, algebricdesc=True, matrixdesc=True):
             df_csv = pd.DataFrame(dict_df_csv)
             #df_csv.at[7,ff]=aparam2
             
-    new_columns = ['AN','EN','MP','PN','PG','MN','AW','AR','IR','CoR','CrR','spdf','AN_his','PN_his','PG_his']  
-    df_csv.columns = new_columns
+    #new_columns = ['AN','EN','MP','PN','PG','MN','AW','AR','IR','CoR','CrR','spdf','AN_his','PN_his','PG_his']  
+    #df_csv.columns = new_columns
     hist_symbol = '_his'
     column_inc_hist = [column for column in df_csv.columns if hist_symbol in column]
     
@@ -903,4 +903,5 @@ if __name__ == "__main__":
                 continue
 
     print(f"\nFinish: Output written to: {out_csv}")
+
 
