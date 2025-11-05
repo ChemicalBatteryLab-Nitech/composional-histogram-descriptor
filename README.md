@@ -100,51 +100,70 @@ for instance, larger ΔEN values indicate more ionic bonding tendencies.
 
 ### 2.3 Matrix Descriptors
 
-The **matrix descriptor** represents the pairwise distribution of elemental categories  
-(such as *principal quantum number (PN)*, *group number (PG)*, or *valence block (spdf)*).  
-For each of these three integer-valued attributes, a **two-dimensional matrix** is constructed  
-where each cell corresponds to a unique combination of two element categories.  
+The **matrix descriptor** represents pairwise relationships between elements  
+based on categorical elemental properties such as:
 
-Each element pair in the composition contributes to a specific matrix position based on  
-its categorical values (e.g., PN₁–PN₂, PG₁–PG₂, or spdf₁–spdf₂).  
-The **sum of their atomic fractions (x₁ + x₂)** is added to the corresponding cell.  
-Only the **upper triangular part** of the matrix (excluding the diagonal) is flattened  
-into a one-dimensional vector, which is defined as the **matrix descriptor**.
+- **PN**: principal quantum number  
+- **PG**: group number in the periodic table  
+- **SPDF**: valence block type (s=1, p=2, d=3, f=4)
+
+For each property, a square matrix is constructed where the rows and columns correspond  
+to the property indices (for example, 1–4 for the SPDF block type).  
+Each matrix element `(i, j)` stores the **sum of atomic fractions** `(x₁ + x₂)`  
+for all element pairs whose properties correspond to categories `i` and `j`.
+
+Importantly, **the diagonal elements are included**.  
+Diagonal terms `(i, i)` represent pairs of *different* elements belonging to the **same block**,  
+such as Ni–Mn in the d-block or O–F in the p-block.
+
+After the matrix is constructed, the **upper-triangular part (including the diagonal)**  
+is flattened row by row into a one-dimensional vector.  
+This flattened vector becomes the **matrix descriptor**.
+
 
 **Example: SPDF Matrix Descriptor**
 
-For the *spdf* category, each element belongs to one of four blocks:  
-- **s-block = 1**, **p-block = 2**, **d-block = 3**, **f-block = 4**  
+Consider the composition **Li₁.₀Ni₀.₅Mn₀.₅O₂.₀**.
 
-Using the composition **Li₀.₅Mn₁.₀O₂.₀**, we obtain:  
+Each element belongs to one of four valence blocks (SPDF):
+
 | Element | spdf | Atomic fraction (x) |
 |----------|-------|--------------------|
-| Li | 1 | 0.5 / 3.5 = 0.1429 |
-| Mn | 3 | 1.0 / 3.5 = 0.2857 |
-| O  | 2 | 2.0 / 3.5 = 0.5714 |
+| Li | 1 | 1.0 / 4.0 = 0.25 |
+| Ni | 3 | 0.5 / 4.0 = 0.125 |
+| Mn | 3 | 0.5 / 4.0 = 0.125 |
+| O  | 2 | 2.0 / 4.0 = 0.50 |
 
-We then enumerate all distinct element pairs and assign their combined concentration (x₁ + x₂):  
+All unique unordered element pairs are formed, and the **sum of their atomic fractions** `(x₁ + x₂)` is calculated:
 
 | Element pair | spdf₁ | spdf₂ | x₁ + x₂ |
 |---------------|--------|--------|----------|
-| Li–Mn | 1 | 3 | 0.4286 |
-| Li–O  | 1 | 2 | 0.7143 |
-| Mn–O  | 3 | 2 | 0.8571 |
+| Li–O  | 1 | 2 | 0.75 |
+| Li–Ni | 1 | 3 | 0.375 |
+| Li–Mn | 1 | 3 | 0.375 |
+| Ni–Mn | 3 | 3 | 0.25 |
+| Ni–O  | 3 | 2 | 0.625 |
+| Mn–O  | 3 | 2 | 0.625 |
 
-Next, we construct a **4×4 matrix (spdf₁ × spdf₂)** and fill each upper-triangular cell with the summed concentration:  
+Next, we construct a 4×4 SPDF matrix where each entry `(i, j)` corresponds to the spdf combination of two elements.  
+The sum of the corresponding atomic fractions is accumulated in that position.
 
 | spdf₁ \ spdf₂ | 1 | 2 | 3 | 4 |
 |---------------|---|---|---|---|
-| **1** | – | 0.7143 | 0.4286 | 0 |
-| **2** | – | – | 0.8571 | 0 |
-| **3** | – | – | – | 0 |
-| **4** | – | – | – | – |
+| **1 (s)** | 0.000 | 0.750 | 0.750 | 0.000 |
+| **2 (p)** | 0.750 | 0.000 | 1.250 | 0.000 |
+| **3 (d)** | 0.750 | 1.250 | 0.250 | 0.000 |
+| **4 (f)** | 0.000 | 0.000 | 0.000 | 0.000 |
 
-Only the upper triangular elements (excluding the diagonal) are extracted left-to-right and row-by-row:  
+The diagonal component `(3,3)` represents the Ni–Mn pair —  
+different elements, but both in the same d-block.
 
-[0.7143, 0.4286, 0, 0.8571, 0, 0, 0]
+Finally, the upper triangular portion (including the diagonal) is flattened  
+from left to right and top to bottom to produce a one-dimensional vector:
 
-This one-dimensional vector is the **SPDF matrix descriptor**.
+[0.000, 0.750, 0.750, 0.000, 0.000, 1.250, 0.000, 0.250, 0.000, 0.000]
+
+This vector is the **SPDF matrix descriptor** for the composition Li₁.₀Ni₀.₅Mn₀.₅O₂.₀.
 
 
 ## 3. Installation
