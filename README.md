@@ -55,6 +55,48 @@ and the resulting vectors are visualized as graphs.<BR>>
 
 
 ### 2.2 Algebric Descriptors
+The **algebric descriptor** represents the interaction between different **element pairs** in a chemical composition.  
+For each unique element pair (A–B), the difference or product of a selected elemental property  
+(such as atomic number, electronegativity, atomic radius, etc.) is calculated.  
+The resulting value is plotted on the **x-axis**, while the **pair concentration (x₁ + x₂)**,  
+defined as the sum of the atomic fractions of the two elements, is plotted on the **y-axis** to form a histogram.
+
+Unlike simple averaging methods, this descriptor captures the **relative relationships between elements**,  
+quantifying how dissimilar or cooperative element pairs are within a composition.  
+A Gaussian broadening can be applied to produce a continuous, smooth distribution.
+
+**Calculation Procedure**
+
+1. Enumerate all unique element pairs (A–B) in the composition.  
+2. For each pair, compute either:  
+   - Difference: ΔP = |P₁ − P₂|  
+   - Product: P₁ × P₂  
+   where *P* represents a chosen elemental property (e.g., electronegativity EN).  
+3. Compute the atomic fraction of each element (x₁, x₂),  
+   and define the **pair concentration** as (x₁ + x₂).  
+4. Construct a histogram using ΔP (or the product) as the x-axis  
+   and the pair concentration (x₁ + x₂) as the y-axis.
+
+**Example: Electronegativity Difference (ΔEN) Descriptor for Li₀.₅Mn₁.₀O₂.₀**
+
+| Element Pair | EN₁ | EN₂ | ΔEN | Atomic Fraction x₁ | Atomic Fraction x₂ | Pair Concentration (x₁ + x₂) |
+|---------------|------|------|------|--------------------|--------------------|-------------------------------|
+| Li–Mn | 0.98 | 1.55 | 0.57 | 0.5/3.5 = 0.1429 | 1.0/3.5 = 0.2857 | 0.4286 |
+| Li–O  | 0.98 | 3.44 | 2.46 | 0.5/3.5 = 0.1429 | 2.0/3.5 = 0.5714 | 0.7143 |
+| Mn–O  | 1.55 | 3.44 | 1.89 | 1.0/3.5 = 0.2857 | 2.0/3.5 = 0.5714 | 0.8571 |
+
+By plotting ΔEN on the x-axis and the pair concentration on the y-axis,  
+we can observe that Li–O and Mn–O pairs dominate the overall distribution.  
+The spread and peak positions of ΔEN reflect the diversity of bonding character—  
+for instance, larger ΔEN values indicate more ionic bonding tendencies.
+
+**Features**
+
+- Represents **element-pair-level interactions** via property differences or products.  
+- Captures **chemical heterogeneity** and **bonding diversity** beyond simple mean descriptors.  
+- Enables comparison of inter-element relationships without requiring crystal structure information.  
+- Gaussian broadening provides smooth and continuous histogram distributions.
+
 
 ### 2.3 Matrix Descriptors
 
