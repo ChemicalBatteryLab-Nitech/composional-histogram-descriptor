@@ -100,6 +100,52 @@ for instance, larger ΔEN values indicate more ionic bonding tendencies.
 
 ### 2.3 Matrix Descriptors
 
+The **matrix descriptor** represents the pairwise distribution of elemental categories  
+(such as *principal quantum number (PN)*, *group number (PG)*, or *valence block (spdf)*).  
+For each of these three integer-valued attributes, a **two-dimensional matrix** is constructed  
+where each cell corresponds to a unique combination of two element categories.  
+
+Each element pair in the composition contributes to a specific matrix position based on  
+its categorical values (e.g., PN₁–PN₂, PG₁–PG₂, or spdf₁–spdf₂).  
+The **sum of their atomic fractions (x₁ + x₂)** is added to the corresponding cell.  
+Only the **upper triangular part** of the matrix (excluding the diagonal) is flattened  
+into a one-dimensional vector, which is defined as the **matrix descriptor**.
+
+**Example: SPDF Matrix Descriptor**
+
+For the *spdf* category, each element belongs to one of four blocks:  
+- **s-block = 1**, **p-block = 2**, **d-block = 3**, **f-block = 4**  
+
+Using the composition **Li₀.₅Mn₁.₀O₂.₀**, we obtain:  
+| Element | spdf | Atomic fraction (x) |
+|----------|-------|--------------------|
+| Li | 1 | 0.5 / 3.5 = 0.1429 |
+| Mn | 3 | 1.0 / 3.5 = 0.2857 |
+| O  | 2 | 2.0 / 3.5 = 0.5714 |
+
+We then enumerate all distinct element pairs and assign their combined concentration (x₁ + x₂):  
+
+| Element pair | spdf₁ | spdf₂ | x₁ + x₂ |
+|---------------|--------|--------|----------|
+| Li–Mn | 1 | 3 | 0.4286 |
+| Li–O  | 1 | 2 | 0.7143 |
+| Mn–O  | 3 | 2 | 0.8571 |
+
+Next, we construct a **4×4 matrix (spdf₁ × spdf₂)** and fill each upper-triangular cell with the summed concentration:  
+
+| spdf₁ \ spdf₂ | 1 | 2 | 3 | 4 |
+|---------------|---|---|---|---|
+| **1** | – | 0.7143 | 0.4286 | 0 |
+| **2** | – | – | 0.8571 | 0 |
+| **3** | – | – | – | 0 |
+| **4** | – | – | – | – |
+
+Only the upper triangular elements (excluding the diagonal) are extracted left-to-right and row-by-row:  
+
+[0.7143, 0.4286, 0, 0.8571, 0, 0, 0]
+
+This one-dimensional vector is the **SPDF matrix descriptor**.
+
 
 ## 3. Installation
 
