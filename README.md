@@ -74,8 +74,8 @@ sigma represents the width of the Gaussian broadening applied to the histogram.E
 
 
 
-### 2.2 Algebric Descriptors
-The **algebric descriptor** represents the interaction between different **element pairs** in a chemical composition.  
+### 2.2 algebraic Descriptors
+The **algebraic descriptor** represents the interaction between different **element pairs** in a chemical composition.  
 For each unique element pair (A–B), the difference or product of a selected elemental property  
 (such as atomic number, electronegativity, atomic radius, etc.) is calculated.  
 The resulting value is plotted on the **x-axis**, while the **pair concentration (x₁ + x₂)**,  
