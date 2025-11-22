@@ -74,7 +74,7 @@ sigma represents the width of the Gaussian broadening applied to the histogram.E
 
 
 
-### 2.2 algebraic Descriptors
+### 2.2 Algebraic Descriptors
 The **algebraic descriptor** represents the interaction between different **element pairs** in a chemical composition.  
 For each unique element pair (A–B), the difference or product of a selected elemental property  
 (such as atomic number, electronegativity, atomic radius, etc.) is calculated.  
@@ -181,20 +181,10 @@ This vector is the **SPDF matrix descriptor** for the composition Li₁.₀Ni₀
 
 ## 3. Installation
 
-`chemhist` can be installed locally from source using `pip`.  Download source files to your local computer, such as by `git clone`.
-Make sure you are in the directory that contains the `pyproject.toml` file.
+Install: 
 
 ```bash
-cd path/to/chemhist_project
-pip install .
-```
-
-If you encounter any build errors (for example, *access denied* or *failed to build wheel*),  
-clean up previous build directories and try again:
-
-```bash
-# Windows PowerShell
-Remove-Item -Recurse -Force build, dist, chemhist.egg-info
+pip install chemhist
 ```
 
 To verify that the installation was successful:
