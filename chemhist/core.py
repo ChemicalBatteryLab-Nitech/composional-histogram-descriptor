@@ -34,8 +34,11 @@ def compconv(reference): #------------------------------------------------------
         compositionprim = reference
     
     #z = readdefelem
-    re.sub(r'\[',r'\(',compositionprim)
-    re.sub(r'\]',r'\)',compositionprim)
+    #re.sub(r'\[',r'\(',compositionprim)
+    #re.sub(r'\]',r'\)',compositionprim)
+    compositionprim = re.sub(r'\[', '(', compositionprim)
+    compositionprim = re.sub(r'\]', ')', compositionprim)
+    
     if printoff != "T":
         print ("{} input: {}\n".format(composition,compositionprim))
     i=0
@@ -148,48 +151,77 @@ def compconv(reference): #------------------------------------------------------
 
     return ions,compositionprim,indexions,totalion
 
-def readdefelem(atom,elem_csv): #------------------------------------------------------------------------------
-    
+def readdefelem(atom, elem_csv):
     """
-    IN =open(defelem,'r')
-    defelem=IN.readlines()
-    for line in defelem:
-        line=line.rstrip('\n')
-    IN.close()
+    Return dict: {feature: {atom: float or 'nodata'}}
+    Python 3.8–3.12 safe
     """
-    #df_elem=df_csv.loc[0:101,'atomic_num.':'spdf-block']
-    #print(elem_csv)
-    #df_elem=elem_csv.loc[0:101,'atomic_num.':'spdf-block']
-    desc_list=elem_csv.columns.tolist()
-    elem_list=elem_csv.to_numpy().tolist()
-    el_dic={}
-    i=0
-    i_list=[]
-    for desc in desc_list:
-        if desc=='element_symbol' or desc=='Endatastat.':
-            pass
+    row = elem_csv.loc[elem_csv["element_symbol"] == atom]
+    if row.empty:
+        return {}
+
+    row = row.iloc[0]
+    out = {}
+
+    for col in elem_csv.columns:
+        if col in ("element_symbol", "Endatastat."):
+            continue
+
+        val = row[col]
+
+        if pd.isna(val):
+            out[col] = {atom: 'nodata'}
         else:
-            i_list.append(i)
-        i+=1
-    for field in elem_list:
-        defatom=field[1]
-        element = '0'
-        def_atom = {defatom : element}
-        for desc in desc_list:
-            if desc=='element_symbol' or desc=='Endatastat.':
-                pass
-            else:
-                el_dic[desc] = dict(def_atom)
-                i_list.append(i)
-            i+=1
+            try:
+                out[col] = {atom: float(val)}
+            except (TypeError, ValueError):
+                out[col] = {atom: 'nodata'}
 
-        desc_list=desc_list=[des for des in desc_list if des not in ['element_symbol','Endatastat.']]
-        #print(desc_list)
-        if atom == defatom:
-            for i,desc in zip(i_list,desc_list):
-                el_dic[desc][atom]=field[i]       
+    return out
 
-            return el_dic
+
+# def readdefelem2(atom,elem_csv): #------------------------------------------------------------------------------
+    
+#     """
+#     IN =open(defelem,'r')
+#     defelem=IN.readlines()
+#     for line in defelem:
+#         line=line.rstrip('\n')
+#     IN.close()
+#     """
+#     #df_elem=df_csv.loc[0:101,'atomic_num.':'spdf-block']
+#     #print(elem_csv)
+#     #df_elem=elem_csv.loc[0:101,'atomic_num.':'spdf-block']
+#     desc_list=elem_csv.columns.tolist()
+#     elem_list=elem_csv.to_numpy().tolist()
+#     el_dic={}
+#     i=0
+#     i_list=[]
+#     for desc in desc_list:
+#         if desc=='element_symbol' or desc=='Endatastat.':
+#             pass
+#         else:
+#             i_list.append(i)
+#         i+=1
+#     for field in elem_list:
+#         defatom=field[1]
+#         element = '0'
+#         def_atom = {defatom : element}
+#         for desc in desc_list:
+#             if desc=='element_symbol' or desc=='Endatastat.':
+#                 pass
+#             else:
+#                 el_dic[desc] = dict(def_atom)
+#                 i_list.append(i)
+#             i+=1
+
+#         desc_list=desc_list=[des for des in desc_list if des not in ['element_symbol','Endatastat.']]
+#         #print(desc_list)
+#         if atom == defatom:
+#             for i,desc in zip(i_list,desc_list):
+#                 el_dic[desc][atom]=field[i]       
+
+#             return el_dic
 
 def broad(df,arg3,df_hist,j_list_nise): #--------------------------------------------------------------- Broad                                                                                                        
 
@@ -903,5 +935,6 @@ if __name__ == "__main__":
                 continue
 
     print(f"\nFinish: Output written to: {out_csv}")
+
 
 
