@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "chemhist"
-version = "0.1.0"
+version = "0.1.1"
 description = "Chemical composition histogram descriptor generator"
 authors = [
     { name="Masanobu Nakayama" }
@@ -26,3 +26,4 @@ chemhist = ["data/*.csv"]
 [tool.setuptools]
 include-package-data = true
 zip-safe = false
+
